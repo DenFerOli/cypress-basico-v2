@@ -3,13 +3,14 @@ describe('', () => {
         cy.visit('src/index.html');
     });
 
-    // Aula
+    // Aula 01
 
     it('Verificar titulo da aplicação', () => {
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
     });
 
-    // Aula
     // .should()
+
+    // Aula 02
 
 });
