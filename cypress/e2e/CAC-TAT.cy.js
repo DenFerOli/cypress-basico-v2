@@ -1,12 +1,17 @@
 /// <reference types="Cypress" />
-// Intelisense
+
+const { lorem } = require("faker/lib/locales/cz");
+
+// Intelisense e autocomplete
 
 describe('', () => {
+
+    // Pré condição
     beforeEach(() => {
         cy.visit('src/index.html');
     });
 
-    // Aula 01
+    // Aula 08
 
     it('Verificar titulo da aplicação', () => {
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
@@ -14,21 +19,21 @@ describe('', () => {
 
     //it é o test case
 
-    // .should()
+    it.only('Preencher os campos obrigatórios e envia o formulario', () => {
 
-    // Aula 02
+        var texto = "123 dwdw jejdw widiwdj iwsiwdwd idiwdiw dwdiwd"
 
-    it('Preencher os campos obrigatórios', () => {
         cy.get('#firstName').should('be.visible')
         cy.get('#firstName').type('Denis')
-        cy.get('#firstName').type('Fernando')
+        cy.get('#lastName').type('Fernando')
         cy.get('#email').type('denis@mail.com')
-        cy.get('#open-text-area').type('123 Testando som 123')
-        cy.get('button[type="submit"]').click()
+        cy.get('#open-text-area').type(texto)
+        cy.get('button[type="submit"]').click();
+
+        cy.get('.success').should('be.visible');
     });
 
     // Adicionar um comando após ao outro chama-se encadear
-    // Aula 03 - video 08
 
     it('', () => {
         
