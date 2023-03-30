@@ -28,7 +28,7 @@ describe('', () => {
     });
 
     // Adicionar um comando após ao outro chama-se encadear
-    // Aula 03
+    // Aula 03 - video 08
 
     it('', () => {
         
