@@ -19,7 +19,7 @@ describe('', () => {
 
     //it é o test case
 
-    it.only('Preencher os campos obrigatórios e envia o formulario', () => {
+    it('Preencher os campos obrigatórios e envia o formulario', () => {
 
         var texto = "123 dwdw jejdw widiwdj iwsiwdwd idiwdiw dwdiwd"
 
@@ -27,13 +27,27 @@ describe('', () => {
         cy.get('#firstName').type('Denis')
         cy.get('#lastName').type('Fernando')
         cy.get('#email').type('denis@mail.com')
-        cy.get('#open-text-area').type(texto)
+        cy.get('#open-text-area').type(texto, {delay: 100})
         cy.get('button[type="submit"]').click();
 
         cy.get('.success').should('be.visible');
     });
 
     // Adicionar um comando após ao outro chama-se encadear
+
+    it.only('Exibe mensagem de erro ao submeter o formulario com um email com formatação inválida', () => {
+        var texto = "123 dwdw jejdw widiwdj iwsiwdwd idiwdiw dwdiwd"
+
+        cy.get('#firstName').should('be.visible')
+        cy.get('#firstName').type('Denis')
+        cy.get('#lastName').type('Fernando')
+        cy.get('#email').type('denismail.com')
+        cy.get('#open-text-area').type(texto, {delay: 0})
+        cy.get('button[type="submit"]').click();
+        cy.get('.error').should('be.visible');
+
+    });
+
 
     it('', () => {
         
