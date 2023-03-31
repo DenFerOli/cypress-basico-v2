@@ -35,7 +35,7 @@ describe('', () => {
 
     // Adicionar um comando após ao outro chama-se encadear
 
-    it.only('Exibe mensagem de erro ao submeter o formulario com um email com formatação inválida', () => {
+    it('Exibe mensagem de erro ao submeter o formulario com um email com formatação inválida', () => {
         var texto = "123 dwdw jejdw widiwdj iwsiwdwd idiwdiw dwdiwd"
 
         cy.get('#firstName').should('be.visible')
@@ -49,9 +49,21 @@ describe('', () => {
     });
 
 
-    it('', () => {
-        
+    it('campo telefone continua vazio quando preenchido com valor não numérico', () => {
+        cy.get('#phone')
+        .type('abdefewfw')
+        .should('have.value', '');
     });
 
-    //parei na aula 10
+    it.only('exibe mensagem de erro quando telefone se torna obrigatório mas não é preenchido antes do envio do formulario', () => {
+        cy.get('#firstName').type('Denis');
+        cy.get('#lastName').type('Fernando');
+        cy.get('#email').type('denis@email.com');
+        cy.get('#phone-checkbox').check()
+        cy.get('#open-text-area').type('dqdq dqdwqdqwd dqwdqdq');
+        cy.get('button[type="submit"]').click();
+        cy.get('.error').should('be.visible');
+    });
+
+    //parei na aula 14
 });
