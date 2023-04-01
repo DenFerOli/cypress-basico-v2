@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-const { lorem } = require("faker/lib/locales/cz");
 
 // Intelisense e autocomplete
 
@@ -55,7 +54,7 @@ describe('', () => {
         .should('have.value', '');
     });
 
-    it.only('exibe mensagem de erro quando telefone se torna obrigatório mas não é preenchido antes do envio do formulario', () => {
+    it('exibe mensagem de erro quando telefone se torna obrigatório mas não é preenchido antes do envio do formulario', () => {
         cy.get('#firstName').type('Denis');
         cy.get('#lastName').type('Fernando');
         cy.get('#email').type('denis@email.com');
@@ -65,5 +64,25 @@ describe('', () => {
         cy.get('.error').should('be.visible');
     });
 
-    //parei na aula 14
+    it('Preenche e limpa os campos nome, sobrenome, email e telefone', () => {
+        cy.get('#firstName').type('Denis').should('have.value', 'Denis');
+        cy.get('#lastName').type('Fernando').should('have.value', 'Fernando');
+        cy.get('#email').type('denis@email.com').should('have.value', 'denis@email.com');
+        cy.get('#phone-checkbox').check();
+        cy.get('#phone').type('4399998888').should('have.value', '4399998888')
+
+        cy.get('#firstName').clear().should('have.value', '');
+        cy.get('#lastName').clear().should('have.value', '');
+        cy.get('#email').clear().should('have.value', '');
+        cy.get('#phone-checkbox').check();
+        cy.get('#phone').clear().should('have.value', '');  
+
+    });
+
+    it.only('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
+        cy.get('button[type="submit"]').click();
+        cy.get('.error').should('be.visible');
+    });
+
+    //parei na aula 16
 });
