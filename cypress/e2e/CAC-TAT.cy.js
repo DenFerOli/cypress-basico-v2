@@ -105,19 +105,22 @@ describe('', () => {
     // cy.('select').select()
 
     it.only('Selecionar checkboxes', () => {
+
+        cy.get('select')
+        .select('YouTube')
+        .should('have.value', 'youtube');
         cy.get('select')
         .select('Blog')
-        .should('have.value', 'blog'); // busca pelo texto do select
+        .should('have.value', 'blog'); // seleciona pelo texto do select - Atenção para maiusculo
         cy.get('select')
         .select('youtube')
-        .should('have.value', 'youtube'); // busca pelo value do select
+        .should('have.value', 'youtube'); // seleciona pelo value do select
         cy.get('select')
         .select(3)
-        .should('have.value', 'mentoria'); // busca pela posição do array
+        .should('have.value', 'mentoria'); // seleciona pela posição do array
     });
 
     
-
-    //parei na aula 18
+    //parei na aula 20
 
 });
