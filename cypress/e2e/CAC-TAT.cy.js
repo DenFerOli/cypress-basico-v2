@@ -1,6 +1,8 @@
 /// <reference types="Cypress" />
 
 
+
+
 // Intelisense e autocomplete
 
 describe('', () => {
@@ -79,10 +81,43 @@ describe('', () => {
 
     });
 
-    it.only('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
+    // Verificar se a mensagem de erro aparece
+
+    it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
         cy.get('button[type="submit"]').click();
         cy.get('.error').should('be.visible');
     });
 
-    //parei na aula 16
+    // Comandos customizados
+
+    it('Comandos customizados', () => {
+        cy.fillMandatoryFieldsAndSubmit()
+    });
+
+    // cy.contains
+    it('alterar o button para o cy.contains', () => {
+        cy.get('#firstName').type('Denis');
+        cy.get('#lastName').type('Fernando');
+        cy.get('#email').type('denis@email.com');
+        cy.contains('button', 'Enviar').click()
+    });
+    
+    // cy.('select').select()
+
+    it.only('Selecionar checkboxes', () => {
+        cy.get('select')
+        .select('Blog')
+        .should('have.value', 'blog'); // busca pelo texto do select
+        cy.get('select')
+        .select('youtube')
+        .should('have.value', 'youtube'); // busca pelo value do select
+        cy.get('select')
+        .select(3)
+        .should('have.value', 'mentoria'); // busca pela posição do array
+    });
+
+    
+
+    //parei na aula 18
+
 });
