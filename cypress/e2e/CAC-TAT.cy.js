@@ -104,7 +104,7 @@ describe('', () => {
     
     // cy.('select').select()
 
-    it.only('Selecionar checkboxes', () => {
+    it('Selecionar checkboxes', () => {
 
         cy.get('select')
         .select('YouTube')
@@ -120,7 +120,32 @@ describe('', () => {
         .should('have.value', 'mentoria'); // seleciona pela posição do array
     });
 
+    // Opções de seleão suspensa
+
+    it('Seleciona um produto (Mentoria) por seu valor (value)', () => {
+        cy.get('#product')
+        .select('mentoria')
+        .should('have.value', 'mentoria')
+    });
+
+    it('seleciona um produto (Blog) por seu indice', () => {
+        cy.get('#product')
+        .select(1)
+        .should('have.value', 'blog')
+    });
+
+    it.only('marca o tipo de atendimento "Feedback"', () => {
+        cy.get('input[type="radio"]')
+        .should('have.length', 3)
+
+    });
+
+
     
-    //parei na aula 20
+    //parei na aula 22 --------------------------------------------------------------------
+
+    // Aula 36 - Simulando o viewport de um dispositivo móvel
+
+
 
 });
