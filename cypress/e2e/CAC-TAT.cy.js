@@ -134,17 +134,55 @@ describe('', () => {
         .should('have.value', 'blog')
     });
 
-    it.only('marca o tipo de atendimento "Feedback"', () => {
+    it('marca o tipo de atendimento "Feedback"', () => {
+        cy.get('input[type="radio"][value="feedback"]')
+        .check()
+        .should('have.value', 'feedback')
+    });
+
+    it('marca cada tipo de atendimento', () => {
         cy.get('input[type="radio"]')
         .should('have.length', 3)
+        .each(($radio) => {
+            cy.wrap($radio).check()
+            cy.wrap($radio).should('be.checked')
+        })
+    });
 
+    it('marca ambos checkboxes, depois desmarca o ultimo', () => {
+        cy.get('input[type="checkbox"]')
+        .check()
+        .should('be.checked')
+        .last()
+        .uncheck()
+        .should('not.be.checked')
+    });
+
+    it('exibe mensagem de erro quando telefone se torna obrigatório mas não é preenchido antes do envio do formulario', () => {
+        cy.get('#firstName').type('Denis');
+        cy.get('#lastName').type('Fernando');
+        cy.get('#email').type('denis@email.com');
+        cy.get('#phone-checkbox').check()
+        cy.get('#open-text-area').type('dqdq dqdwqdqwd dqwdqdq');
+        cy.get('button[type="submit"]').click();
+        cy.get('.error').should('be.visible');
+    });
+
+    // Fazendo upload de arquivos
+
+    it.only('seleciona um arquivo da pasta fixtures', () => {
+        cy.get('input[type="file"]#file-upload')
+        .should('not.have.value')
+        .selectFile('cypress/fixtures/example.json')
+        .should(($input) => {
+            expect($input[0].files[0].name).to.equal('example.json')
+        })
     });
 
 
     
-    //parei na aula 22 --------------------------------------------------------------------
+    //parei na aula 30 --------------------------------------------------------------------
 
-    // Aula 36 - Simulando o viewport de um dispositivo móvel
 
 
 
