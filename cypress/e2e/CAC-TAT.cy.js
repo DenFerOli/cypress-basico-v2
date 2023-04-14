@@ -201,16 +201,21 @@ describe('', () => {
 
     // Abrir outras abas no navegador
 
-    it.only('verifica que a politica de privacidade abre em outra aba sem a necessidade de um clique', () => {
-        cy.get('a')
+    it('verifica que a politica de privacidade abre em outra aba sem a necessidade de um clique', () => {
+        cy.get('#privacy a').should('have.attr', 'target', '_blank')
+    });
+
+    it.only('acessa a pagina da politica de privacidade removendo o target e então clicando no link', () => {
+        cy.get('#privacy a')
+        .invoke('removeAttr', 'target')
+        .click()
+
+        cy.contains('Talking About Testing').should('be.visible')
     });
 
 
 
 
-    //parei na aula 33 --------------------------------------------------------------------
-
-
-
-
+    //parei na aula 36 --------------------------------------------------------------------
+    
 });
