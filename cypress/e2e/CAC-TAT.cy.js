@@ -205,17 +205,18 @@ describe('', () => {
         cy.get('#privacy a').should('have.attr', 'target', '_blank')
     });
 
-    it.only('acessa a pagina da politica de privacidade removendo o target e então clicando no link', () => {
+    it('acessa a pagina da politica de privacidade removendo o target e então clicando no link', () => {
         cy.get('#privacy a')
         .invoke('removeAttr', 'target')
         .click()
 
-        cy.contains('Talking About Testing').should('be.visible')
+        cy.contains('Talking About Testwing').should('be.visible')
     });
 
+    // 36 - Simular o viewport de um dispositivo movel
 
+    //"cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeight=860",
 
+    //parei na aula 38 --------------------------------------------------------------------
 
-    //parei na aula 36 --------------------------------------------------------------------
-    
 });
